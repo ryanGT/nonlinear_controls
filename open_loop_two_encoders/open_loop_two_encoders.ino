@@ -108,7 +108,7 @@ void setup()
   // encoder pin on interrupt 0 (pin 2)
   //!attachInterrupt(0, doEncoder, RISING);
 
-  Serial.print("open loop two encoders 2/4/15");
+  Serial.print("open loop two encoders 3/26/15");
   Serial.print("\n");
   n = 0;
   n2 = 0; 
@@ -243,8 +243,8 @@ void loop()
     else if (inByte == 2){
       //start new test
       //!_EncTicks0 = 0;
-      enc0.write(0);
-      enc1.write(0);
+      //enc0.write(0);
+      //enc1.write(0);
       send_ser = true;
       digitalWrite(triggerPin, HIGH);
       nISR = -1;
@@ -254,6 +254,11 @@ void loop()
       send_ser = false;
       v1 = offset;
       digitalWrite(triggerPin, LOW);
+    }
+    else if (inByte == 4){
+      //reset encoders
+      enc0.write(0);
+      enc1.write(0);
     }
     digitalWrite(receivePin, LOW);
   }

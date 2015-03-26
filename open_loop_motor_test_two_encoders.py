@@ -1,8 +1,9 @@
 from matplotlib.pyplot import *
-from scipy import *
+from numpy import *
 import numpy, time
 
-import control, control_utils
+#import control
+import control_utils
 
 import time, copy, os
 
@@ -28,8 +29,8 @@ if test_case == 1:
     #v = arange(N)
 
 
-    amp = 50
-    #amp = 0
+    #amp = 50
+    amp = 0
     v_case = 3
 
     if v_case == 1:
