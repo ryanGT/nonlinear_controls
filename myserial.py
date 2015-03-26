@@ -3,7 +3,10 @@ import serial_utils
 #righthand side for me
 #portname = '/dev/tty.usbmodem1411'
 #lefthand side for me
-portname = '/dev/tty.usbmodem1421'
+#portname = '/dev/tty.usbmodem1421'
+
+#Raspberry Pi USB serial port:
+portname = '/dev/ttyACM0'
 
 ser = serial_utils.Open_Serial(portname)
 ser.flushInput()
