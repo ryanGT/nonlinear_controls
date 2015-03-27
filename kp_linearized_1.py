@@ -62,7 +62,7 @@ v_echo = zeros_like(nvect)
 serial_utils.WriteByte(ser, 2)#start new test
 
 
-kp = 0.5
+kp = 1.0
 
 def kp_calc(theta, theta_d):
     e = theta_d-theta
