@@ -260,6 +260,11 @@ void loop()
       enc0.write(0);
       enc1.write(0);
     }
+    else if (inByte == 5){
+      SendTwoByteInt(_EncTicks0);
+      SendTwoByteInt(_EncTicks1);
+      Serial.write(10);
+    }
     digitalWrite(receivePin, LOW);
   }
   
