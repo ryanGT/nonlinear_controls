@@ -261,6 +261,8 @@ void loop()
       enc1.write(0);
     }
     else if (inByte == 5){
+      _EncTicks0 = enc0.read();
+      _EncTicks1 = enc1.read();
       SendTwoByteInt(_EncTicks0);
       SendTwoByteInt(_EncTicks1);
       Serial.write(10);

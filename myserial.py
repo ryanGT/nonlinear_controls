@@ -1,4 +1,5 @@
 import serial_utils
+import sys
 
 #righthand side for me
 #portname = '/dev/tty.usbmodem1411'
@@ -7,7 +8,10 @@ import serial_utils
 
 #Raspberry Pi USB serial port:
 portname = '/dev/ttyACM0'
-
+if sys.platform == 'darwin':
+    #max osx
+    portname = '/dev/tty.usbmodem1411'
+    
 ser = serial_utils.Open_Serial(portname)
 ser.flushInput()
 ser.flushOutput()
