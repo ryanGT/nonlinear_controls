@@ -21,7 +21,7 @@ ser.flushOutput()
 dt = 1.0/150#<---------- is this true for your choice of OCR1A?
 
 
-N = 150*10#10 second
+N = 150*3#10 second
 amp = 50
 
 u = zeros(N)
@@ -79,7 +79,7 @@ def save_data(filename, datain):
 
     labels = ['#t','u','theta0','theta1']
 
-    data_str = datain.astype(str)
+    data_str = datain.astype('S30')
     data_out = numpy.append([labels],data_str, axis=0)
 
     savetxt(filename, data_out, delimiter=',',fmt='%s')
