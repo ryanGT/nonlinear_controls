@@ -26,6 +26,7 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
                     Kdig, Ldig, \
                     T=3.0, dt=0.01, \
                     amp=50, \
+                    open_loop=False, \
                     ):
     from myserial import ser
 
@@ -37,9 +38,10 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
     N = len(t)
 
     u = zeros(N,dtype=int)
-    u[10:20] = amp
+    u[10:30] = amp
 
     nvect = zeros(N,dtype=int)
+    vecho = zeros_like(nvect)
     theta0_vect = zeros_like(nvect)
     theta1_vect = zeros_like(nvect)
     v = zeros_like(nvect)
@@ -53,9 +55,13 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
     th1_obs = zeros(N)
 
     serial_utils.WriteByte(ser, 2)#start new test
-
+    
     for i in range(N):
-        v_float = -dot(Kdig, x_hat) + u[i]
+        if open_loop:
+            v_float = u[i]
+        else:
+            v_float = -dot(Kdig, x_hat) + u[i]
+            
         v_temp = int(v_float)
         v[i] = mysat(v_temp)
 
@@ -74,6 +80,7 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
         serial_utils.WriteInt(ser, v[i])
 
         nvect[i] = serial_utils.Read_Two_Bytes(ser)
+        vecho[i] = serial_utils.Read_Two_Bytes_Twos_Comp(ser)
         theta0_vect[i] = serial_utils.Read_Two_Bytes_Twos_Comp(ser)
         theta1_vect[i] = serial_utils.Read_Two_Bytes_Twos_Comp(ser)
         nl_check = serial_utils.Read_Byte(ser)
