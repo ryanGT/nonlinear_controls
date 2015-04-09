@@ -60,9 +60,9 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
         v[i] = mysat(v_temp)
 
         th0_exp = theta0_vect[i-1]
-        th1_exp = theta1_vect[i-1]
+        th1_exp = theta1_vect[i-1]#y_exp
 
-        y_diff_th1 = th1_exp - dot(Cdig,x_hat)
+        y_diff_th1 = th1_exp - dot(Cdig,x_hat)#y-y_hat
         obs1_part = dot(Ldig,squeeze(y_diff_th1))
         #x_hat = dot(Adig,x_hat) + Bdig*v[i] + dot(Ldig,squeeze(y_diff))
         x_hat = dot(Adig,x_hat) + Bdig*v[i] + obs1_part
