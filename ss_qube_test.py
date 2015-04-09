@@ -26,6 +26,7 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
                     Kdig, Ldig, \
                     T=3.0, dt=0.01, \
                     amp=50, \
+                    open_loop=False, \
                     ):
     from myserial import ser
 
@@ -54,7 +55,6 @@ def run_dig_ss_test(Adig, Bdig, Cdig, \
     th1_obs = zeros(N)
 
     serial_utils.WriteByte(ser, 2)#start new test
-    open_loop = 0
     
     for i in range(N):
         if open_loop:
